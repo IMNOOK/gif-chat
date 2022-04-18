@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const { Type: { ObejectId } } = Schema;
+const { Types: { ObjectId } } = Schema;
 const chatSchema = new Schema({
 	room: {
 		type: ObjectId,
@@ -19,3 +19,5 @@ const chatSchema = new Schema({
 		default: Date.now,
 	},
 });
+
+module.exports = mongoose.model('Chat', chatSchema);

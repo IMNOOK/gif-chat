@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
-const ColorHash = require('color-hash');
+const ColorHash = require('color-hash').default;
 /*
 접속한 사용자에게 고유한 색상을 부여하려고 한다.
 익명 채팅이지만 자신과 남은 구별하기 위한 최소한의 사용자 정보는 필요하다.
@@ -23,7 +23,7 @@ const indexRouter = require('./routes');
 const connect = require('./schemas');
 
 const app = express();
-app.set('port', process.env.PORT || 8005);
+app.set('port', /*process.env.PORT ||*/ 8005);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
 	express: app,
@@ -71,7 +71,7 @@ app.use((err, req, res, next) => {
 	res.render('error');
 });
 
-const server = app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => { //서버 실행
 	console.log(app.get('port'), '번 포트에서 대기 중');
 });
 
